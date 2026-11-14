@@ -1,0 +1,473 @@
+/* 
+    =====================================================================
+    Variáveis do Design System (Cyber Neon + Glass)
+    =====================================================================
+*/
+:root {
+    --bg-page: #0F172A;
+    --glass-card-bg: rgba(30, 41, 59, 0.48);
+    --glass-option-bg: rgba(51, 65, 85, 0.42);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --primary: #6366F1;
+    --primary-hover: #4F46E5;
+    --neon-cyan: #38BDF8;
+    --neon-purple: #A855F7;
+    --text-main: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --correct: #22C55E;
+    --correct-bg: rgba(34, 197, 94, 0.20);
+    --wrong: #EF4444;
+    --wrong-bg: rgba(239, 68, 68, 0.20);
+}
+
+/* 
+    =====================================================================
+    Reset & Fundo da página com esferas de luz (orbs)
+    =====================================================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Container das esferas de luz ao fundo */
+.ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(55px);
+    opacity: 0.6;
+    animation: flutuarOrb 10s ease-in-out infinite alternate;
+}
+
+.orb-indigo {
+    width: 320px;
+    height: 320px;
+    background: var(--primary);
+    top: 8%;
+    left: 15%;
+}
+
+.orb-cyan {
+    width: 280px;
+    height: 280px;
+    background: var(--neon-cyan);
+    bottom: 10%;
+    right: 15%;
+    animation-delay: -3s;
+}
+
+.orb-purple {
+    width: 260px;
+    height: 280px;
+    background: var(--neon-purple);
+    top: 50%;
+    left: 55%;
+    animation-delay: -6s;
+}
+
+@keyframes flutuarOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(35px, -35px) scale(1.12);
+    }
+}
+
+/* 
+    ====================================================================
+    Card principal em vidro + borda giratória 360°
+    ====================================================================
+*/
+.quiz-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 540px;
+    background: var(--glass-card-bg);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22);
+}
+
+/* Efeito especial: borda iluminada girando 360° sem tampar o vidro */
+.quiz-border-spinner {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 3px;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.quiz-border-spinner::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--neon-cyan) 25%,
+        var(--primary) 50%,
+        var(--neon-purple) 75%,
+        transparent 100%
+    );
+    animation: girarBorda 3.5s linear infinite;
+}
+
+@keyframes girarBorda {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Controle de exibição das telas */
+.hidden {
+    display: none !important;
+}
+
+/* 
+    ==================================================================================
+    Tipografia, badge, painel, resumo e botão primário
+    ==================================================================================
+*/
+
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.badge-neon {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--neon-cyan);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+    margin-bottom: 16px;
+}
+
+.titulo-principal {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    line-height: 1.25;
+}
+
+.subtitulo {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 26px;
+}
+
+/* Painel resumo em vidro (tela 1) */
+.painel-resumo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 18px 14px;
+    margin-bottom: 28px;
+    background: rgba(15,23, 42, 0.45);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+.resumo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.resumo-valor {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--neon-cyan);
+}
+
+.resumo-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.resumo-divisor {
+    width: 1px;
+    height: 36px;
+    background: var(--glass-border);
+}
+
+/* Botão primário (Iniciar, próxima, jogar novamente) */
+.btn-primario {
+    width: 100%;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(99, 102, 241, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primario:hover {
+    background: linear-gradient(135deg, var(--primary-hover), var(--neon-purple));
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(168, 85, 247, 0.55);
+}
+
+/* 
+    ============================================================================
+    Tela 2: Cabeçalho, barar de progresso e enunciado
+    ============================================================================
+*/
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.contador-tag,
+.placar-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid var(--glass-border);
+}
+
+.contador-tag {
+    color: var(--text-secondary);
+}
+
+.placar-tag {
+    color: var(--neon-cyan);
+}
+
+.barra-progresso-trilho {
+    width: 100%;
+    height: 8px;
+    background: rgba(15, 23, 42, 0.65);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.barra-progresso-preenchimento {
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--primary), var(--neon-purple));
+    border-radius: 999px;
+    box-shadow: 0 0 12px var(--neon-cyan);
+    transition: width 0.4s ease;
+}
+
+.enunciado-pergunta {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* 
+    =====================================================================================
+    Botões de alternativa + efeito especial 2 (Scale + Neon piscando)
+    =====================================================================================
+*/
+.lista-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.opcao-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--glass-option-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 14px;
+    color: var(--text-main);
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Caixinha de letra (A, B, C, D) */
+.opcao-letra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    color: var(--neon-cyan);
+    font-weight: 800;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Efeito epecial 2: Expansão + Neon piscando no hover */
+.opcao-btn:hover:not(:disabled) {
+    transform: scale(1.03);
+    background: rgba(51, 65, 85, 0.65);
+    animation: neonPiscando 1.2s ease-in-out infinite;
+}
+
+@keyframes neonPiscando {
+    0%, 100% {
+        border-color: var(--primary);
+        box-shadow: 0 0 14px rgba(99, 102, 241, 0.55);
+    }
+    50% {
+        border-color: var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.75), 0 0 8px rgba(168, 85, 247, 0.5);
+    }
+}
+
+.opcao-btn:disabled {
+    cursor: default;
+}
+
+/* Estado correto (.correta) */
+.opcao-btn.correta {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
+}
+
+.opcao-btn.correta .opcao-letra {
+    background: var(--correct);
+    color: #0f172a;
+    border-color: var(--correct);
+}
+
+/* Estado Errado(.errada) */
+.opcao-btn.errada {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.45);
+}
+
+.opcao-btn.errada .opcao-letra {
+    background: var(--wrong);
+    color: #0f172a;
+    border-color: var(--wrong);
+}
+
+/* Rodapé da pergunta e mensagem de feedback */
+.quiz-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feedback-msg {
+    font-size: 0.92rem;
+    font-weight: 700;
+    min-height: 22px;
+}
+
+/* 
+    ============================================================================================
+    Tela 3: Círculo em vidro do resultado final
+    ============================================================================================
+*/
+.circulo-resultado {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.55);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(99, 102, 241, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 20px;
+}
+
+.nota-fracao {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.nota-porcentagem {
+    font-size: 0.83rem;
+    color: var(--neon-cyan);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.pontuacao-final {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.pontuacao-final strong {
+    color: var(--neon-cyan);
+}

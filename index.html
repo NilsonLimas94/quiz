@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Quiz Cyber Glass</title>
+</head>
+<body>
+    <!-- Esferas de luz de fundo (Ambiente Orbs) -->
+    <div class="ambient-bg" aria-hidden="true">
+        <span class="orb orb-indigo"></span>
+        <span class="orb orb-cyan"></span>
+        <span class="orb orb-purple"></span>
+    </div>
+
+    <!-- Card principal em vidro -->
+    <main class="quiz-card">
+        <!-- Camada de borda iluminada girando 360° sem tampar o vidro -->
+        <div class="quiz-border-spinner" aria-hidden="true"></div>
+
+        <!-- Tela 1: Início -->
+        <section id="tela-inicio" class="tela">
+            <span class="badge-neon">⚡ Desafio Cyber Glass</span>
+            <h1 class="titulo-principal">Quiz de Conhecimento Gerais</h1>
+            <p class="subtitulo">
+                Teste sua mente em ciência, tecnologia, história e cultura geral!
+            </p>
+
+            <!-- Painel de resumo em vidro (5 questões, +20 pts, nível misto) -->
+            <div class="painel-resumo">
+                <div class="resumo-item">
+                    <span class="resumo-valor">5</span>
+                    <span class="resumo-label">Questões</span>
+                </div>
+                <div class="resumo-divisor"></div>
+                <div class="resumo-item">
+                    <span class="resumo-valor">+20 pts</span>
+                    <span class="resumo-label">Por acerto</span>
+                </div>
+                <div class="resumo-divisor"></div>
+                <div class="resumo-item">
+                    <span class="resumo-valor">Misto</span>
+                    <span class="resumo-label">Nível</span>
+                </div>
+            </div>
+
+            <button id="btn-iniciar" class="btn-primario" type="button">
+                Iniciar Quiz
+            </button>
+        </section>
+
+        <!-- Tela 2: Perguntas -->
+        <section id="tela-perguntas" class="tela hidden">
+            <header class="quiz-header">
+                <span id="contador-pergunta" class="contador-tag">Questão 1 de 5</span>
+                <span id="placar-atual" class="placar-tag">Pontos: 0</span>
+            </header>
+
+            <!-- Barra de progresso Neon -->
+            <div class="barra-progresso-trilho">
+                <div id="barra-progresso-preenchimento" class="barra-progresso-preenchimento"></div>
+            </div>
+
+            <!-- Enunciado da Questão -->
+            <h2 id="texto-pergunta" class="enunciado-pergunta">
+                Carregando pergunta...
+            </h2>
+
+            <!-- Lista de opções(a, b, c, d será criadas via JS) -->
+            <div id="lista-opcoes" class="lista-opcoes">
+                
+            </div>
+
+            <!-- Rodapé com feedback e botões próxima -->
+            <footer class="quiz-footer">
+                <p id="feedback-msg" class="feedback-msg"></p>
+                <button id="btn-proxima" class="btn-primario hidden" type="button">
+                    Próxima Pergunta
+                </button>
+            </footer>
+        </section>
+
+        <!-- Tela 3: Resultado final -->
+        <section id="tela-resultado" class="tela hidden">
+            <span class="badge-neon">🏁 Fim de Jogo</span>
+            <h1 class="titulo-principal">Seu Desempenho</h1>
+
+            <!-- Círculo em vidro com nota final -->
+            <div class="circulo-resultado">
+                <strong id="nota-fracao" class="nota-fracao">0/5</strong>
+                <span id="nota-porcentagem" class="nota-porcentagem">0% de acerto</span>
+            </div>
+            <p class="pontuacao-final">
+                Pontuação total: <strong id="pontos-finais">0</strong> pts
+            </p>
+            <p id="mensagem-final" class="subtitulo">
+                Mensagem dinâmica de acordo com o seu resultado!
+            </p>
+
+            <button id="btn-reiniciar" class="btn-primario" type="button">Jogar Novamente ↻</button>
+        </section>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html>
