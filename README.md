@@ -4,8 +4,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Design System](https://img.shields.io/badge/Design_System-Cyber_Neon_%2B_Glassmorphism-6366F1?style=for-the-badge)
+[![Deploy Vercel](https://img.shields.io/badge/Vercel-Jogar_Agora-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://quiz-blush-gamma-96.vercel.app)
 
 Aplicação web interativa de **Quiz de Conhecimentos Gerais** desenvolvida com **HTML5 Semântico**, **CSS3 Avançado** e **JavaScript Puro (Vanilla JS)**, seguindo as especificações visuais do **Design System (Cyber Neon + Glassmorphism)**.
+
+🔗 **Acesse o projeto online (Deploy):** [https://quiz-blush-gamma-96.vercel.app](https://quiz-blush-gamma-96.vercel.app)
 
 ---
 
